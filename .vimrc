@@ -13,11 +13,17 @@ call vundle#begin()
 
 Plugin 'scrooloose/nerdtree'
 
+Plugin 'PhilRunninger/nerdtree-visual-selection'
+
 Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'morhetz/gruvbox'
 
 Plugin 'voldikss/vim-floaterm'
+
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -69,7 +75,7 @@ nnoremap qq :NERDTreeFocus<cr>
 nnoremap <C-q> :NERDTreeToggle<cr>
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+autocmd VimEnter * NERDTree | wincmd p 
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 	
@@ -89,3 +95,19 @@ colorscheme gruvbox
 nnoremap <C-t> :FloatermToggle<cr>
 
 " -----		vim floaterm		    -------
+
+" -----     nerdtree-visual-selection       -------
+
+" Smart way to move between panes
+map <up> <C-w><up>
+map <down> <C-w><down>
+map <left> <C-w><left>
+map <right> <C-w><right>
+
+" -----     nerdtree-visual-selection       -------
+
+" -----                fzf                  -------
+
+nnoremap <C-p> :Files<cr>
+
+" -----                fzf                  -------
